@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="./antd.min.css">
+  <link rel="stylesheet" href="./FormMaking.css">
+</head>
+
+<body>
+  <div id="app">
+    <fm-generate-antd-form :data="jsonData" :remote="remoteFuncs" :value="editData" :remote-option="dynamicData"
+      ref="generateForm">
+    </fm-generate-antd-form>
+  </div>
+  <script src="./vue.js"></script>
+  <script src="./moment.js"></script>
+  <script src="./antd.min.js"></script>
+  <script src="./FormMaking.umd.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        jsonData: {
+          "list": [{ "type": "select", "icon": "icon-select", "options": { "defaultValue": "", "multiple": false, "disabled": false, "clearable": false, "placeholder": "", "required": false, "requiredMessage": "", "validatorCheck": false, "validator": "", "showLabel": false, "width": "", "options": [{ "value": "Option 1" }, { "value": "Option 2" }, { "value": "Option 3" }], "remote": false, "remoteType": "datasource", "remoteOption": "option_8xih03bk", "filterable": false, "remoteOptions": [], "props": { "value": "value", "label": "label" }, "remoteFunc": "func_8xih03bk", "customClass": "", "labelWidth": 100, "isLabelWidth": false, "hidden": false, "dataBind": true, "tableColumn": false, "remoteDataSource": "getoptions", "remoteArgs": {} }, "events": { "onChange": "", "onFocus": "", "onBlur": "" }, "name": "下拉选择框", "key": "8xih03bk", "model": "test", "rules": [] }, {
+            "type": "button", "icon": "icon-button", "options": { "customClass": "", "disabled": false, "labelWidth": 100, "isLabelWidth": false, "hideLabel": true, "hidden": false, "dataBind": false, "buttonSize": "small", "buttonType": "", "buttonPlain": false, "buttonRound": false, "buttonCircle": false, "buttonName": "Button", "width": "", "remoteFunc": "func_pb6tncin", "remoteOption": "option_pb6tncin", "tableColumn": false },
+            "events": { "onClick": "2ugq1gqn" },
+            "name": "按钮", "key": "pb6tncin", "model": "button_pb6tncin", "rules": []
+          }], "config": {
+            "labelWidth": 120, "labelPosition": "top", "size": "default", "customClass": "", "ui": "antd", "layout": "horizontal", "labelCol": 3, "width": "820px", "hideLabel": false, "hideErrorMessage": false, "eventScript": [{ "key": "mounted", "name": "mounted", "func": "" }, { "key": "5r9530o8", "name": "calcNumber", "func": "let {rowIndex, field} = arguments[0]\n\nlet listData = this.getValue('list')\n\nlistData[rowIndex]['number3'] = listData[rowIndex]['number1'] + listData[rowIndex]['number2']\n\nlistData[rowIndex]['number5'] = listData[rowIndex]['number3'] - listData[rowIndex]['number4']\n\nthis.setData({\n  list: listData\n})\n\n// 调用 triggerEvent 方法来触发对应的事件\nthis.triggerEvent('calcTotals')\n" }, { "key": "gid86v55", "name": "calcTotal", "func": "const {numbers} = arguments[0]\n\nlet total = 0\n\nnumbers.forEach(number => {\n  total += number\n})\n\nreturn total" }, { "key": "8nlvb85b", "name": "calcTotals", "func": "const listData = this.getValue('list')\n\nlet total1 = this.triggerEvent('calcTotal', {\n  numbers: listData.map(item => item['number1'])\n})\n\nlet total2 = this.triggerEvent('calcTotal', {\n  numbers: listData.map(item => item['number2'])\n})\n\nlet total3 = this.triggerEvent('calcTotal', {\n  numbers: listData.map(item => item['number3'])\n})\n\nlet total4 = this.triggerEvent('calcTotal', {\n  numbers: listData.map(item => item['number4'])\n})\n\nlet total5 = this.triggerEvent('calcTotal', {\n  numbers: listData.map(item => item['number5'])\n})\n\nthis.setData({\n  total1: total1,\n  total2: total2,\n  total3: total3,\n  total4: total4,\n  total5: total5\n})" }, {
+              "key": "2ugq1gqn", "name": "onClick_2ugq1gqn",
+              "func": "console.log(this.getValue())"
+            }],
+            "dataSource": [
+
+              {
+                "key": "getoptions", "name": "Get Options",
+                "url": "https://tools-server.making.link/api/new/options",
+                "method": "GET",
+                "auto": false,
+                "responseFunc": "return res.data;",
+                "params": {},
+                "headers": {},
+                "requestFunc": "return config;",
+                "args": []
+              }], "platform": "pc"
+          }
+        },
+        editData: {},
+        remoteFuncs: {
+
+        },
+        dynamicData: {
+
+        }
+      },
+      methods: {
+        hsubmit() {
+          console.log(this);
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

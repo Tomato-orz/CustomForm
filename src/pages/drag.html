@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    const allowDrop = (ev) => {
+      console.log('allowDrop: ', );
+      ev.preventDefault();
+    }
+
+    const drag = (ev) => {
+      console.log('drag: ',);
+
+      ev.dataTransfer.setData("Text", ev.target.id);
+    }
+
+    const drop = (ev) => {
+      console.log('drop: ');
+      ev.preventDefault();
+  
+      var data = ev.dataTransfer.getData("Text");
+      ev.target.appendChild(document.getElementById(data));
+    }
+    const   fn=(e)=>{
+      console.log('e: ',e.currentTarget);
+
+    }
+  </script>
+  <div id='text' draggable="true" ondragstart='drag(event)' style='background-color: skyblue ; ' >1111</div>
+  <div id='text1' draggable="true"  ondragstart='drag(event)' style= 'background-color: green; width: 200px' >2222</div>
+
+
+  <div id='drag' ondrop='drop(event)' onclick="fn(event)" ondragover='allowDrop(event)' style= 'border: 1px solid #f0f0f0;
+    border: 1px solid skyblue; height: 300px; width: 500px;padding: 10px' >
+  </div>
+</body>
+
+</html>
