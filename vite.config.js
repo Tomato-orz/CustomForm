@@ -34,5 +34,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src') // src 路径
     }
   },
- 
+  build:{
+    outDir:'doc'
+  }
 })
