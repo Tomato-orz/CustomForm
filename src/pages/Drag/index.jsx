@@ -11,7 +11,6 @@ export const Drag = () => {
   const [formlist, setformlist] = useState([])
   const navigate = useNavigate()  
   const [select, setselect] = useState({})
-  console.log(test);
   useEffect(() => {
     if (form1) {
       form1.resetFields()
